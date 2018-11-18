@@ -9,6 +9,7 @@ We performed an interrupted time series analysis to estimate the impact that sta
 A message asking to hang out was defined as any message containing one of the keywords specified in `analysis.ipynb`.
 
 ### Conclusions
+![plot showing findings](assets/plot.png)
 Starting a residency program reduced the number of messages asking to hang out by almost 85% (IRR 0.14 | 95%CI 0.10 - 0.20) together with a sharp increase in friends' unhappiness.
 
 #### Shortcomings
