@@ -11,7 +11,7 @@ A message asking to hang out was defined as any message containing one of the ke
 ### Conclusions
 
 <p align="center"> 
-![plot showing findings](assets/plot.png)
+<img src='assets/plot.png'/>
 </p>
 
 Starting a residency program reduced the number of messages asking to hang out by almost 85% (IRR 0.14 | 95%CI 0.10 - 0.20) together with a sharp increase in friends' unhappiness.
