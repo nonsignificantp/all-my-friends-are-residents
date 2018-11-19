@@ -1,17 +1,19 @@
 library(lmtest)
-library(Epi)
+library(sandwich)
 
-data = read_csv("./assets/data.csv")
+# LOAD data.csv inside assets
 
-model <- glm(mentions ~ offset(log(messanges)) + exposure + time, 
-             family=quasipoisson,
-             data=exposed_data)
+model = glm('ratio ~ exposure + time + exposure:time',
+            family=gaussian(link = 'identity'),
+            data = data)
 
 summary(model)
 
-round(ci.lin(model,Exp=T),3)
+coeftest(model, vcov=vcovHAC)
+sqrt(diag(vcovHAC(model))) # Standard errors
 
-#             Estimate StdErr       z    P    expEst  2.5% 97.5%
-# Intercept      0.425  0.022  19.233 0.00     1.530 1.465 1.598
-# exposure      -1.926  0.176 -10.965 0.00     0.146 0.103 0.206
-# time          -0.001  0.002  -0.332 0.74     0.999 0.995 1.003
+#                Estimate  Std. Error z value Pr(>|z|)      lowCI   upCI
+# (Intercept)    0.0972698  0.0096298 10.1009  < 2e-16 ***
+# exposure      -0.1845160  0.0826954 -2.2313  0.02566 *   -0.267 -0.101
+# time          -0.0025860  0.0025194 -1.0264  0.30468    
+# exposure:time  0.0143197  0.0077513  1.8474  0.06469 .
